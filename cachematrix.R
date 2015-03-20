@@ -1,7 +1,14 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+## USe of cache to store inverse matrix to avoid repetition of calculation
+##
+##
+##  how to use:
+## 1 - create a square matrix ex.: exemplo_de_matriz <- matrix(c(5, 2, 2, 2, 7, 3, 2, 3, 7), 3, 3)
+## 2 - create the cache matrix ex.: matriz_cache <- makeCacheMatrix(exemplo_de_matriz)
+## 3 - invert the matrix Ex.:cacheSolve(matriz_cache)
+##    a - running for the first time should indicate 'inverting matrix'
+##    b - running more time should retrn 'getting cached inverted matrix'
+##
+##  CODE DOES NOT VERIFY IF MATRIX IS SQUARE AND INVERTABLE
 
 #
 # gets a matrix, stores it and creates 4 'functions':
@@ -39,17 +46,17 @@ cacheSolve <- function(x, ...) {
                 if(is.null(m)) {
                                 data <- x$get()                                       
                                 x$set_inv(solve(x$get(), ...))
-                                message("calculating data")
+                                message("inverting matrix")
                                 return (x$get_inv())                                       
                                 }
                                 
-                message("getting cached data")
+                message("getting cached inverted matrix")
                 return(m)                
 }
 
 
 
-exemplo_de_matriz <- matrix(c(1, 0, 5, 2, 1, 6, 3, 4, 0), 3, 3)
+exemplo_de_matriz <- matrix(c(5, 2, 2, 2, 7, 3, 2, 3, 7), 3, 3)
 matriz_cache <- makeCacheMatrix(exemplo_de_matriz)
 cacheSolve(matriz_cache)
 
